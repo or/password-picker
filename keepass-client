@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+import argparse
+import os
+import sys
+
+from keepass import kpdb
+
+
+def list_entries(args):
+    db = kpdb.Database(args.db, args.password)
+    for entry in sorted(db.entries, key=lambda a: a.last_mod_time, reverse=True):
+        print(entry.title)
+
+
+def grab_entry(args):
+    db = kpdb.Database(args.db, args.password)
+    for entry in sorted(db.entries, key=lambda a: a.last_mod_time, reverse=True):
+        if entry.title == args.grab:
+            print(entry.password)
+            return
+
+    sys.exit(-1)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-l', '--list', default=False, action='store_true',
+                        help='list all entry names')
+    parser.add_argument('-g', '--grab', help='grab password for given entry')
+    parser.add_argument('db', help='the database file')
+    parser.add_argument('password', help='the master password')
+
+    args = parser.parse_args()
+
+    if args.list:
+        list_entries(args)
+    elif args.grab:
+        grab_entry(args)
+
