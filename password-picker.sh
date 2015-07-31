@@ -13,10 +13,10 @@ bad_password_alert="zenity --error --text 'bad password or no entries' --title '
 
 # $password will be the master password;
 # make sure to use quotes around it
-list_command='$password_picker_dir/keepass-client -l $database_file "$password"'
+list_command='$password_picker_dir/keepass-client -l "$database_file" "$password"'
 # $password will be the master password, $entry will be the name of the entry;
 # make sure to use quotes around them
-grab_command='$password_picker_dir/keepass-client $database_file "$password" -g "$entry"'
+grab_command='$password_picker_dir/keepass-client "$database_file" "$password" -g "$entry"'
 
 password=$(eval $password_prompt_command)
 if [ -z "$password" ]; then
