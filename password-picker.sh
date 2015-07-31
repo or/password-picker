@@ -34,4 +34,12 @@ if [ -z "$entry" ]; then
     exit -1
 fi
 
-eval $grab_command | xargs echo -n | xclip -selection c
+entry_password=$(eval $grab_command)
+echo -n "$entry_password" | xclip -selection c
+
+sleep 30
+
+clipboard=$(xclip -out -selection c)
+if [ "$clipboard" == "$entry_password" ]; then
+    echo -n "" | xclip -selection c
+fi
