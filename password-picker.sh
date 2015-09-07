@@ -29,7 +29,7 @@ if [ -z "$entries" ]; then
     exit -1
 fi
 
-entry=$(echo "$entries" | dmenu -l 10)
+entry=$(echo "$entries" | dmenu -i -l 10)
 if [ -z "$entry" ]; then
     exit -1
 fi
