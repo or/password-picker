@@ -3,18 +3,18 @@ import argparse
 import os
 import sys
 
-from keepass import kpdb
+from pykeepass import PyKeePass
 
 
 def list_entries(args):
-    db = kpdb.Database(args.db, args.password)
-    for entry in sorted(db.entries, key=lambda a: a.last_mod_time, reverse=True):
+    db = PyKeePass(args.db, password=args.password)
+    for entry in sorted(db.entries, key=lambda a: a.mtime, reverse=True):
         print(entry.title)
 
 
 def grab_entry(args):
-    db = kpdb.Database(args.db, args.password)
-    for entry in sorted(db.entries, key=lambda a: a.last_mod_time, reverse=True):
+    db = PyKeePass(args.db, password=args.password)
+    for entry in sorted(db.entries, key=lambda a: a.mtime, reverse=True):
         if entry.title == args.grab:
             print(entry.password)
             return

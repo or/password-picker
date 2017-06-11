@@ -13,13 +13,13 @@ its password to stdout. Simply adjust `password-picker.sh`.
 * Python 3
 
 Only if you use KeePass and the included `keepass-client`:
-* python-keepass (`sudo pip3 install keepass`)
+* pykeepass (`sudo pip3 install pykeepass`)
 
 ### How To
 1. Bind `<path>/password-picker.sh <path-to-keepass-db>` to the shortcut you want to use.
    I use i3 and have this in my `.i3/config`:
    ```
-   bindsym $mod+z exec "<path>/password-picker.sh <path>/password-database.kdb"
+   bindsym $mod+z exec "<path>/password-picker.sh <path>/password-database.kdbx"
    ```
 1. Hit your shortcut
 1. Enter your master password
